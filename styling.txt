@@ -1,0 +1,7 @@
+🔁 Summary Cheat Sheet:
+Element Type	      Suggested Color Token
+Main heading (h1)	  text-foreground (default)
+Section heading	text- foreground or text-primary
+Highlighted words	  text-primary
+Subheadings	text-     secondary
+Paragraph text -      text-foregr 
