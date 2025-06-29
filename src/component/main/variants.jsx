@@ -1,17 +1,19 @@
 import { FadeInSection } from "./provider/framerprovider";
 
 export default function PanelShowcase() {
-  const images = import.meta.glob(
-    "/src/assets/gallery/*.{jpg,jpeg,png,webp,gif}"
-  );
-  const imagesLength = Object.keys(images).length;
-  let panels = [];
-  let paneltype = ["extraspace" ,"PVC","WPC","UPVC"]
-  
+const imageModules = import.meta.glob('/src/assets/gallery/*.{jpg,jpeg,png,webp,gif}', {
+  eager: true, // Load immediately
+  import: 'default', // Get the actual path
+});
 
-  for (let i = 1; i <= imagesLength; i++) {
-    panels.push({image:`/src/assets/gallery/image${i}.jpg`, type:paneltype[i]});
-  }
+const imagePaths = Object.values(imageModules);
+let paneltype = [ "PVC", "WPC", "UPVC"];
+let panels = [];
+
+for (let i = 0; i < imagePaths.length; i++) {
+  panels.push({ image: imagePaths[i], type: paneltype[i % paneltype.length] });
+}
+
 
   return (
     <div id="collections"className="min-h-screen bg-gradient-to-br from-gray-50 to-white py-12 px-4">
